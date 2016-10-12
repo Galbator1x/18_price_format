@@ -29,12 +29,12 @@ class TestPrice:
             format_price('')
 
     @pytest.mark.parametrize('price', ['qweasd', '   ', '\t', '\n', '.',
-                                       'dfg!.,$/-f=sfs', 'dg.fgh'])
+                                       'dfg!.,$/-f=sfs', 'dg.fgh', '..'])
     def test_letters_and_punctuations(self, price):
         with pytest.raises(ValueError):
             format_price(price)
 
-    @pytest.mark.parametrize('price', ['ro632.5g', '0,s', 'h96 .h 524', '..',
+    @pytest.mark.parametrize('price', ['ro632.5g', '0,s', 'h96 .h 524',
                                        '.5.', '5..2', '453.78.9', 'f35.l.5 '])
     def test_incorrect_price(self, price):
         with pytest.raises(ValueError):
