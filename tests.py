@@ -34,13 +34,8 @@ class TestPrice:
         with pytest.raises(ValueError):
             format_price(price)
 
-    @pytest.mark.parametrize('price', ['..', '.5.', '5..2', '453.78.9',
-                                       'fdg35.hgf.5 '])
-    def test_more_than_one_dot(self, price):
-        with pytest.raises(ValueError):
-            format_price(price)
-
-    @pytest.mark.parametrize('price', ['ro632.5g', '0,s', 'h96 .h 524'])
+    @pytest.mark.parametrize('price', ['ro632.5g', '0,s', 'h96 .h 524', '..',
+                                       '.5.', '5..2', '453.78.9', 'f35.l.5 '])
     def test_incorrect_price(self, price):
         with pytest.raises(ValueError):
             format_price(price)
