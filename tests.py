@@ -25,20 +25,17 @@ def correct_param(request):
 
 class TestPrice:
     def test_empty_string(self):
-        with pytest.raises(ValueError):
-            format_price('')
+        assert format_price('') == 'N/A'
 
     @pytest.mark.parametrize('price', ['qweasd', '   ', '\t', '\n', '.',
                                        'dfg!.,$/-f=sfs', 'dg.fgh', '..'])
     def test_letters_and_punctuations(self, price):
-        with pytest.raises(ValueError):
-            format_price(price)
+        assert format_price(price) == 'N/A'
 
     @pytest.mark.parametrize('price', ['ro632.5g', '0,s', 'h96 .h 524',
                                        '.5.', '5..2', '453.78.9', 'f35.l.5 '])
     def test_incorrect_price(self, price):
-        with pytest.raises(ValueError):
-            format_price(price)
+        assert format_price(price) == 'N/A'
 
     def test_correct_price(self, correct_param):
         input_param, expected_output = correct_param
