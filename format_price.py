@@ -5,7 +5,10 @@ import locale
 def format_price(price):
     price = str(price).replace(',', '.')
     price = re.sub(r'\s', '', price)
-    price = float(price)
+    try:
+        price = float(price)
+    except ValueError:
+        return 'N/A'
 
     loc = locale.getlocale()
     locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
