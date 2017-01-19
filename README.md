@@ -18,4 +18,3 @@ Requirements
 ------------
 
 - Python >= 3.5
-- pytest==3.0.3
